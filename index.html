@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Animal</title>
+<meta name="description" content="Download Daily Animal, an Android homescreen widget that shows a random animal from iNaturalist.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --green: #2E5E3E;
+    --bg: #F6F8F4;
+    --card: #FFFFFF;
+    --text: #1B1F1C;
+    --muted: #55605A;
+    --line: #DCE3DC;
+    --button: #2E5E3E;
+    --button-text: #FFFFFF;
+    --accent-soft: #E3EEE5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101411;
+      --card: #1A201C;
+      --text: #E3E9E4;
+      --muted: #A4B0A8;
+      --line: #2C352F;
+      --button: #9FD3AE;
+      --button-text: #0D2416;
+      --accent-soft: #1F2E24;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101411; --card: #1A201C; --text: #E3E9E4; --muted: #A4B0A8;
+    --line: #2C352F; --button: #9FD3AE; --button-text: #0D2416; --accent-soft: #1F2E24;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 40px 16px 56px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .icon {
+    width: 72px; height: 72px; flex: none;
+    border-radius: 22px; background: var(--green);
+    display: grid; place-items: center;
+  }
+  .icon img { width: 56px; height: 56px; filter: invert(1); }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; }
+  .tagline { margin: 4px 0 0; color: var(--muted); }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 20px; padding: 20px; margin-top: 16px;
+  }
+  .download {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 56px; padding: 0 24px; border-radius: 28px;
+    background: var(--button); color: var(--button-text);
+    font-weight: 600; font-size: 18px; text-decoration: none;
+  }
+  .download:focus-visible, a:focus-visible { outline: 3px solid var(--button); outline-offset: 3px; }
+  .version { margin: 12px 0 0; color: var(--muted); font-size: 15px; text-align: center; }
+  .notes { margin: 12px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--accent-soft); }
+  .notes:empty { display: none; }
+  h2 { font-size: 19px; margin: 0 0 8px; }
+  ol { margin: 0; padding-left: 22px; }
+  li + li { margin-top: 6px; }
+  p { margin: 0; }
+  p + p { margin-top: 8px; }
+  a { color: inherit; }
+  .muted { color: var(--muted); }
+  .qr { display: none; }
+  @media (min-width: 720px) and (hover: hover) {
+    .qr { display: flex; gap: 20px; align-items: center; }
+    .qr-code { flex: none; width: 132px; height: 132px; padding: 8px; background: #fff; border-radius: 12px; }
+    .qr-code img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  }
+  footer { margin-top: 32px; font-size: 13px; color: var(--muted); }
+  footer ul { margin: 6px 0 0; padding-left: 18px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="icon"><img src="icon.svg" alt=""></div>
+    <div>
+      <h1>Daily Animal</h1>
+      <p class="tagline">A homescreen widget that shows a random animal from iNaturalist.</p>
+    </div>
+  </header>
+
+  <section class="card">
+    <a class="download" href="https://github.com/maxvanL/daily-animal/releases/latest/download/DailyAnimal.apk">Download for Android</a>
+    <p class="version" id="version">Latest version</p>
+    <p class="notes" id="notes"></p>
+  </section>
+
+  <section class="card qr" aria-label="Open on your phone">
+    <div class="qr-code" id="qr"></div>
+    <p>On a computer? Scan this with your phone's camera to open this page there.</p>
+  </section>
+
+  <section class="card">
+    <h2>First install</h2>
+    <ol>
+      <li>Tap <strong>Download for Android</strong> on your phone, then open the downloaded file.</li>
+      <li>If Android asks, allow your browser to <strong>install unknown apps</strong>, then go back and tap <strong>Install</strong>.</li>
+      <li>If Play Protect warns that the app is unknown, tap <strong>More details</strong> and then <strong>Install anyway</strong>. This is normal for apps that aren't on the Play Store.</li>
+      <li>Long-press your homescreen, choose <strong>Widgets</strong>, find <strong>Daily Animal</strong> and drag it onto the screen.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Updating</h2>
+    <p>When a new version is out, the Daily Animal app shows a notice that links here. Download it and install it over the old one. Your widgets and settings are kept.</p>
+    <p class="muted">Prefer automatic updates? Install <a href="https://obtainium.imranr.dev/">Obtainium</a>, then <a href="obtainium://add/https://github.com/maxvanL/daily-animal">add Daily Animal to it</a> (or add <code>github.com/maxvanL/daily-animal</code> by hand).</p>
+  </section>
+
+  <footer>
+    <p>Animal names and photos come from <a href="https://www.inaturalist.org">iNaturalist</a>. Tap a widget to see the animal and its photo credits there.</p>
+    <p style="margin-top:12px">The app icon is made from icons from <a href="https://www.flaticon.com">Flaticon</a>:</p>
+    <ul>
+      <li><a href="https://www.flaticon.com/free-icons/moth" title="moth icons">Moth icons created by Sympnoiaicon - Flaticon</a></li>
+      <li><a href="https://www.flaticon.com/free-icons/bird" title="bird icons">Bird icons created by Imogen.Oh - Flaticon</a></li>
+      <li><a href="https://www.flaticon.com/free-icons/serpent" title="serpent icons">Serpent icons created by Unknown Depths - Flaticon</a></li>
+      <li><a href="https://www.flaticon.com/free-icons/widget" title="widget icons">Widget icons created by Corner Pixel - Flaticon</a></li>
+    </ul>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+  // Version and "what's new" come from latest.json, the same file the app checks for updates.
+  fetch("latest.json", { cache: "no-cache" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (latest) {
+      if (!latest) return;
+      document.getElementById("version").textContent = "Version " + latest.versionName;
+      if (latest.notes) document.getElementById("notes").textContent = "What's new: " + latest.notes;
+    })
+    .catch(function () {});
+
+  try {
+    var qr = qrcode(0, "M");
+    qr.addData("https://maxvanl.github.io/daily-animal/");
+    qr.make();
+    document.getElementById("qr").innerHTML = qr.createImgTag(4, 0, "QR code for this page");
+  } catch (e) {
+    var box = document.querySelector(".qr");
+    if (box) box.remove();
+  }
+</script>
+</body>
+</html>
